@@ -1,153 +1,54 @@
-body {
-    font-family: 'Orbitron', sans-serif;
-    background: radial-gradient(circle at top, #0f0c29, #302b63, #24243e);
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    overflow-x: hidden;
-  }
-  
-  h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    color: #00ffe7;
-    text-shadow: 0 0 20px #00ffe7;
-  }
-  
-  .app {
-    text-align: center;
-    width: 100%;
-    max-width: 600px;
-  }
-  
-  .search-area {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 30px;
-  }
-  
-  #search {
-    padding: 12px 16px;
-    font-size: 1rem;
-    width: 70%;
-    border-radius: 12px;
-    border: none;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    color: #fff;
-    outline: none;
-    transition: all 0.3s ease;
-  }
-  
-  #search:focus {
-    box-shadow: 0 0 12px #00ffe7;
-  }
-  
-  #Search-button {
-    background: linear-gradient(90deg, #00f260, #0575e6);
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 12px;
-    font-size: 1rem;
-    cursor: pointer;
-    box-shadow: 0 0 15px #00f260;
-    transition: all 0.3s ease;
-  }
-  
-  #Search-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px #00f260;
-  }
-  
-  .pokemon-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    perspective: 1000px;
-  }
-  
-  .pokemon-card {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-    padding: 30px;
-    width: 320px;
-    transform-style: preserve-3d;
-    box-shadow: 0 0 40px rgba(0, 255, 231, 0.4);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: transform 0.6s;
-    animation: fadeIn 0.5s ease-out;
-  }
-  
-  .pokemon-card:hover {
-    transform: rotateY(10deg) rotateX(10deg) scale(1.03);
-  }
-  
-  .pokemon-card img {
-    width: 200px;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 0 15px #00ffe7);
-    transition: filter 0.3s;
-    animation: float 3s ease-in-out infinite;
-  }
-  
-  .pokemon-card img:hover {
-    filter: drop-shadow(0 0 25px #00ffe7) hue-rotate(20deg);
-  }
-  
-  .pokemon-card h2 {
-    font-size: 2rem;
-    color: #ffffff;
-    text-shadow: 0 0 10px #00ffe7;
-    margin-bottom: 10px;
-  }
-  
-  .stats {
-    margin-top: 15px;
-    text-align: left;
-  }
-  
-  .stat {
-    margin: 8px 0;
-    font-size: 1rem;
-    color: #fff;
-  }
-  
-  .stat span {
-    display: inline-block;
-    background: linear-gradient(to right, #00f260, #0575e6);
-    height: 10px;
-    border-radius: 5px;
-    transition: width 0.5s ease;
-    box-shadow: 0 0 5px #00ffe7;
-  }
-  
-  @keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-  }
-  
+/* Eddigi stílusok ... */
 
-  .pokemon-card img {
-    width: 220px;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 0 25px #00ffe7) saturate(1.4) contrast(1.2);
-    transition: transform 0.4s ease, filter 0.4s ease;
-    animation: float 3s ease-in-out infinite;
-    border-radius: 12px;
+/* --- HÁZI FELADAT GRID --- */
+
+#pokemon-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 oszlop */
+  gap: 20px; /* térköz a képek között */
+  justify-items: center; /* középre igazítja a cellák tartalmát */
+  margin-top: 30px;
+  width: 100%;
+  max-width: 1200px; /* max szélesség a gridnek */
+  padding: 0 10px;
+}
+
+/* Pokémon képek a gridben */
+#pokemon-container img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #00ffe7;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+#pokemon-container img:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 30px #00ffe7;
+}
+
+/* Ha szeretnél Pokémon neveket is megjeleníteni a képek alatt, akkor: */
+.pokemon-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #00ffe7;
+  font-weight: 700;
+  text-transform: capitalize;
+  text-shadow: 0 0 10px #00ffe7;
+  cursor: default;
+}
+
+/* Reszponzív grid kisebb képernyőkre */
+@media (max-width: 700px) {
+  #pokemon-container {
+    grid-template-columns: repeat(3, 1fr);
   }
-  .pokemon-card img:hover {
-    transform: scale(1.1) rotate(1deg);
-    filter: drop-shadow(0 0 40px #00ffe7) hue-rotate(30deg);
+
+  #pokemon-container img {
+    width: 90px;
+    height: 90px;
   }
+}
